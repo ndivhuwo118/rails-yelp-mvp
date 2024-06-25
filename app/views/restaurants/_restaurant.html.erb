@@ -9,9 +9,12 @@
     <%= restaurant.address %>
   </p>
 
-  <p>
-    <strong>Rating:</strong>
-    <%= restaurant.rating %>
-  </p>
+<strong> Reviews for <%= @restaurant.name%> </strong>
+<ul>
+<%= @restaurant.reviews.each do |review| %>
+  <li><%= review.content%> </li>
+<% end %>
+</ul>
+
 
 </div>

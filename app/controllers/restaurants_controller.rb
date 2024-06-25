@@ -6,9 +6,18 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
   end
 
+  #GET /restaurants/top
+  def top
+    # SELECT * FROM restaurants WHERE rating = 5
+    @restaurants = Restaurant.where(rating: 5)
+  end
+
+
   # GET /restaurants/1 or /restaurants/1.json
   def show
   end
+
+
 
   # GET /restaurants/new
   def new
@@ -26,7 +35,7 @@ class RestaurantsController < ApplicationController
     respond_to do |format|
       if @restaurant.save
         format.html { redirect_to restaurant_url(@restaurant), notice: "Restaurant was successfully created." }
-        format.json { render :show, status: :created, location: @restaurant }
+        format.json { render :show, status: :created, location: @restaurant,  review: @restaurant }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @restaurant.errors, status: :unprocessable_entity }
